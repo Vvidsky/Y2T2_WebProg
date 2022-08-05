@@ -30,17 +30,8 @@ app.use("/Assets", express.static(__dirname + '/Assets'));
 app.use("/script", express.static(__dirname + '/script'));
 app.use('/', require('./routes/crud'));
 
-const con = mysql.createConnection({
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PWD,
-    database: process.env.DB_DATABASE,
-});
-
-con.connect(function (err) {
-    if (err) throw err;
-    console.log("Connected DB");
-});
+var config = require('./utils/mysql-connection.js');
+var con = config.connection
 
 app.get('/', function (req, res) {
     console.log("Accessing INDEX");

@@ -3,19 +3,10 @@ const express = require('express');
 const router = express.Router();
 const mysql = require('mysql2');
 const dotenv = require('dotenv');
-const con = mysql.createConnection({
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PWD,
-    database: process.env.DB_DATABASE,
-});
 
-//Conection is done in Index.js already
-
-/*con.connect(function (err) {
-    if (err) throw err;
-    console.log("Connected DB");
-});*/ 
+// Connect to the database
+var config = require('../utils/mysql-connection.js');
+var con = config.connection
 
 /*----------------------------------USER CRUD----------------------------------*/
 // get all users
